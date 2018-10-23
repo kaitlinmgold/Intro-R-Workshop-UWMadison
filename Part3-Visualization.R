@@ -175,9 +175,9 @@ TukeyHSD(fit_yield)
 #
 #
 # With Letters
-(yield.plot <- yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
+yield.plot <- yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
                             annotate("text", x="Fungicide_A", y= 174.5, label="A", size=5)+
-                            annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5))
+                            annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5)
 # 
 #
 # With stars

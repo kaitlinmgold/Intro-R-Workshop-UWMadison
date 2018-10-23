@@ -450,10 +450,9 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <pre class="r"><code>&gt; #
 &gt; #</code></pre>
 <p>With Letters</p>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 174.5, label=&quot;A&quot;, size=5) +
+<pre class="r"><code>&gt; yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 174.5, label=&quot;A&quot;, size=5) +
 +                             annotate(&quot;text&quot;, x=&quot;Fungicide_A&quot;, y= 174.5, label=&quot;A&quot;, size=5)+
-+                             annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
++                             annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5)</code></pre>
 <pre class="r"><code>&gt; #</code></pre>
 <p>With stars</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10))</code></pre>
@@ -538,6 +537,7 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p>Now that we have our plot finished, we can save it with the <code>ggsave()</code> function, which allows us to save it as a pdf, png, svg, eps, etc. file. Or, we can click on ‘Export’ and save it.</p>
 <pre class="r"><code>&gt; ggsave(filename = &quot;results/figure1.pdf&quot;, width = 88, units = &quot;mm&quot;)</code></pre>
 <pre><code>Saving 88 x 178 mm image</code></pre>
+<pre><code>Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;results/figure1.pdf&#39;</code></pre>
 </div>
 </div>
 
