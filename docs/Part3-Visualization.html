@@ -355,11 +355,8 @@ div.tocify {
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
-<pre><code>Installing package into &#39;/Users/kaitlinmorey/Library/R/3.4/library&#39;
-(as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
-<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
 <pre class="r"><code>&gt; stop(&quot;
 +      What visualization might be appropriate for these data?
@@ -450,9 +447,10 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <pre class="r"><code>&gt; #
 &gt; #</code></pre>
 <p>With Letters</p>
-<pre class="r"><code>&gt; yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 174.5, label=&quot;A&quot;, size=5) +
-+                             annotate(&quot;text&quot;, x=&quot;Fungicide_A&quot;, y= 174.5, label=&quot;A&quot;, size=5)+
-+                             annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5)</code></pre>
+<pre class="r"><code>&gt; yield.plot + annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 174.5, label=&quot;A&quot;, size=5) +
++              annotate(&quot;text&quot;, x=&quot;Fungicide_A&quot;, y= 174.5, label=&quot;A&quot;, size=5)+
++              annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5)</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; #</code></pre>
 <p>With stars</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10))</code></pre>
