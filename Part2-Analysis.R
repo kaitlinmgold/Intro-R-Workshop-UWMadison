@@ -303,3 +303,22 @@ summary(fit_severity) # p-value is less than 0.05, so let's do Tukey's post-hoc 
 TukeyHSD(fit_severity) 
 # 
 # All the treatment pairs are significantly different from each other as the p-value is < 0.05.
+#
+# ## Agricolae Package 
+# Agricolae is a package that helps you with automatically designing and analyzing experiments
+# (like an RCBD, or strip-plot) but also includes good functionality for doing multiple
+# post-hoc tests, including Tukey's HSD and Fischer's LSD. Agricolae also contains a function 
+# to automatically calculate AUDPC. If you would like more information  on using 'agricolae' 
+# please see the vignette here: 
+# https://cran.r-project.org/web/packages/agricolae/vignettes/tutorial.pdf. 
+#
+install.packages("agricolae")
+library(agricolae)
+#
+# Fischer's LSD
+yield.lsd <- LSD.test(fit_yield, "Treatment")
+yield.lsd
+#
+# Tukey's HSD 
+yield.hsd <- HSD.test(fit_yield, "Treatment")
+yield.hsd
