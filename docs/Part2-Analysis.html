@@ -347,18 +347,23 @@ div.tocify {
 <h2>Step 1: Working Directories</h2>
 <p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
 <pre class="r"><code>&gt; getwd()</code></pre>
-<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/IntroR_Workshop&quot;</code></pre>
+<pre><code>[1] &quot;/Users/kaitlinmorey/Dropbox/GRAD SCHOOL/Intro to R Workshop 2018/IntroR_Workshop-master&quot;</code></pre>
 <p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_Workshop</code>. This is the<br />
 default place where R will begin reading and writing files. For example, you<br />
 can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code>[1] &quot;data&quot;                  &quot;docs&quot;                  &quot;IntroR_Workshop.Rproj&quot;
-[4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
-[7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
+<pre><code> [1] &quot;data&quot;                      &quot;docs&quot;                     
+ [3] &quot;IntroR_Workshop.Rproj&quot;     &quot;LICENSE&quot;                  
+ [5] &quot;Makefile&quot;                  &quot;Part1-Introduction.R&quot;     
+ [7] &quot;Part2-Analysis.R&quot;          &quot;Part3-Visualization.R&quot;    
+ [9] &quot;README.md&quot;                 &quot;wordcloud experience.jpeg&quot;
+[11] &quot;wordcloud.jpeg&quot;            &quot;wordcloud.R&quot;              </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the fungicide example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
-<pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
+<pre><code>[1] &quot;fungicide_dat.csv&quot;                                  
+[2] &quot;Intro to R for Plant Pathologists Workshop RSVP.csv&quot;
+[3] &quot;README.md&quot;                                          </code></pre>
 </div>
 <div id="step-2-reading-in-data" class="section level2">
 <h2>Step 2: Reading in Data</h2>
@@ -489,9 +494,12 @@ can use the function <code>list.files()</code> to view the files in your current
 <h2>Step 3: Advanced data manipulation</h2>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
 <pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;)</code></pre>
+<pre><code>Installing package into &#39;/Users/kaitlinmorey/Library/R/3.4/library&#39;
+(as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
+<pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.4.4</code></pre>
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:stats&#39;:
@@ -511,6 +519,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <p>We can also use the function <code>mutate()</code> from ‘dplyr’. This adds a new variable using existing variables. The usage of this function is as:</p>
 <p>mutate(data, new_variable_name = calculation_based_upon_existing_variables)</p>
 <pre class="r"><code>&gt; fungicide_1 &lt;- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)</code></pre>
+<pre><code>Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
 <blockquote>
 <p>Note: We did not have to use fungicide$Yield_bu_per_acre.</p>
 </blockquote>
@@ -620,6 +629,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 2 Fungicide_A     10916.
 3 Fungicide_B     11035.</code></pre>
 <pre class="r"><code>&gt; View(yield_summary)</code></pre>
+<pre><code>Warning in View(yield_summary): unable to load shared object &#39;/Library/Frameworks/R.framework/Resources/modules//R_de.so&#39;:
+  dlopen(/Library/Frameworks/R.framework/Resources/modules//R_de.so, 6): Library not loaded: /opt/X11/lib/libpixman-1.0.dylib
+  Referenced from: /Library/Frameworks/R.framework/Resources/modules//R_de.so
+  Reason: Incompatible library version: R_de.so requires version 35.0.0 or later, but libpixman-1.0.dylib provides version 33.0.0</code></pre>
+<pre><code>Error in View(yield_summary): X11 dataentry cannot be loaded</code></pre>
 <p>We answered our first question!</p>
 <p>You will notice that on the console below, the code for creating <code>yield_summary</code> has <code>+</code> signs before every line. The plus signs just indicate that R is waiting for the code to be finished. This sign also appears when we forget to put a closing paranthesis ‘)’. Try this:</p>
 <pre class="r"><code>&gt; str(yield_summary
@@ -739,7 +753,7 @@ $Treatment
 Fungicide_A-Control     0.030000 -0.3557208 0.4157208 0.977785
 Fungicide_B-Control     1.933333  1.5476125 2.3190542 0.000000
 Fungicide_B-Fungicide_A 1.903333  1.5176125 2.2890542 0.000000</code></pre>
-<p>There is no difference between ‘Fungicide_A’ and ‘Control’ as the p-value is 0.978 (&gt;0.05).</p>
+<p>There is no difference between ‘Fungicide_A’ and ‘Control’ as the p-value is 0.978 (&gt;0.05). There is a significant difference between ‘Fungicide_B’ and both ‘Fungicide_A’ and ‘Control’ as the p-value is &lt;0.05.</p>
 <p>Let’s do similar analysis using the Severity data</p>
 <pre class="r"><code>&gt; fit_severity &lt;- aov(formula=Severity ~ Treatment, data=fungicide)
 &gt; summary(fit_severity) # p-value is less than 0.05, so let&#39;s do Tukey&#39;s post-hoc test</code></pre>

@@ -161,8 +161,35 @@ yield.plot
 # 
 # The labels are now okay, but it's still not publication-ready. The font is too
 # small, the background should have no gridlines and the axis text needs to be
-# darker.  
+# darker. We also want to include the results of our ANOVA and Tukey's HSD. 
+#
+# ### Annotating with Tukey's HSD letters 
 # 
+# 
+# Remember that 'Fungicide_B' is signfificantly different from both 'Fungicide_A'
+# and 'Control'. 'Fungicide_A' and 'Control' are not signficantly different from 
+# each other. If we want to include stars or letters indicating significant differences
+# we can use 'annotate()'.  
+#
+TukeyHSD(fit_yield)
+#
+#
+# With Letters
+(yield.plot <- yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
+                            annotate("text", x="Fungicide_A", y= 174.5, label="A", size=5)+
+                            annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5))
+# 
+#
+# With stars
+(yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176.25, label="*", size=10))
+#
+# If we want to include a caption explaining what our annotations mean we can use 'labs()'.
+# We can also use this function to add subtitles, titles, or x and y labels. 
+#
+(yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176.25, label="*", size=10) +
+                            labs(caption="* indicates significant difference by Tukey's HSD <0.01"))
+
+#
 # ### Adjusting Look and Feel (theme)
 # 
 # The first thing we can do is change the default theme from `theme_grey()` to
@@ -214,6 +241,8 @@ yield.plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
   ggtitle("Effect of Fungicides on Yield") +
   xlab("Treatment Applied") +
   ylab("Yield (bu/acre)") +
+  annotate("text", x="Fungicide_B", y= 176, label="*", size=10) +
+  labs(caption="* indicates significant difference by Tukey's HSD <0.01") +
   theme_bw(base_size = 14) +
   theme(aspect.ratio = 1.25) +
   theme(panel.grid = element_blank()) +
@@ -229,7 +258,11 @@ severity.plot <- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
   theme(aspect.ratio = 1.5) +
   theme(panel.grid = element_blank()) +
   xlab("Treatment Applied") +
-  ylab("Disease Severity")
+  ylab("Disease Severity") +
+  annotate("text", x="Control", y= 5.75, label="a", size=5) +
+  annotate("text", x="Fungicide_A", y= 5.35, label="b", size=5)+
+  annotate("text", x="Fungicide_B", y= 4.35, label="c", size=5) +
+  labs(caption="letters indicates significant differences by Tukey's HSD <0.01") 
 severity.plot
 # 
 # The text of the title is not in the center. To format text elements of the
@@ -238,7 +271,7 @@ severity.plot
 # `plot.title = element_text()`. Since we need to adjust the text horizontally 
 # in the center, we modify it to `theme(plot.title = element_text(hjust = 0.5))`.
 # 
-(severity.plot <- severity.plot + theme(plot.title = element_text(hjust = 0.5)))
+(severity.plot <- severity.plot + theme(plot.title = element_text(hjust = 0.5), plot.caption=element_text(hjust=.5)))
 # 
 # Step 2: Saving our plot
 # -----------------------

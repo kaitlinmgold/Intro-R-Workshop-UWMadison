@@ -291,7 +291,9 @@ summary(fit_yield) # This is what we want!
 # 
 TukeyHSD(fit_yield) 
 # 
-# There is no difference between 'Fungicide_A' and 'Control' as the p-value is 0.978 (>0.05).
+# There is no difference between 'Fungicide_A' and 'Control' as the p-value is 0.978 (>0.05). 
+# There is a significant difference between 'Fungicide_B' and both 'Fungicide_A' and 'Control'
+# as the p-value is <0.05. 
 # 
 # Let's do similar analysis using the Severity data
 # 

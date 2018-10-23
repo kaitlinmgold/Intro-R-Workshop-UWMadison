@@ -355,8 +355,11 @@ div.tocify {
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
+<pre><code>Installing package into &#39;/Users/kaitlinmorey/Library/R/3.4/library&#39;
+(as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
+<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
 <pre class="r"><code>&gt; stop(&quot;
 +      What visualization might be appropriate for these data?
@@ -435,13 +438,39 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + ylab(&quot;Yield (bu/acre)&quot;))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-12-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>The labels are now okay, but it’s still not publication-ready. The font is too small, the background should have no gridlines and the axis text needs to be darker.</p>
+<p>The labels are now okay, but it’s still not publication-ready. The font is too small, the background should have no gridlines and the axis text needs to be darker. We also want to include the results of our ANOVA and Tukey’s HSD.</p>
+<pre class="r"><code>&gt; #</code></pre>
+</div>
+<div id="annotating-with-tukeys-hsd-letters" class="section level3">
+<h3>Annotating with Tukey’s HSD letters</h3>
+<p>Remember that ‘Fungicide_B’ is signfificantly different from both ‘Fungicide_A’ and ‘Control’. ‘Fungicide_A’ and ‘Control’ are not signficantly different from each other. If we want to include stars or letters indicating significant differences we can use ‘annotate()’.</p>
+<pre class="r"><code>&gt; #
+&gt; TukeyHSD(fit_yield)</code></pre>
+<pre><code>Error in TukeyHSD(fit_yield): object &#39;fit_yield&#39; not found</code></pre>
+<pre class="r"><code>&gt; #
+&gt; #</code></pre>
+<p>With Letters</p>
+<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 174.5, label=&quot;A&quot;, size=5) +
++                             annotate(&quot;text&quot;, x=&quot;Fungicide_A&quot;, y= 174.5, label=&quot;A&quot;, size=5)+
++                             annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; #</code></pre>
+<p>With stars</p>
+<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; #</code></pre>
+<p>If we want to include a caption explaining what our annotations mean we can use ‘labs()’. We can also use this function to add subtitles, titles, or x and y labels.</p>
+<pre class="r"><code>&gt; #
+&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10) +
++                             labs(caption=&quot;* indicates significant difference by Tukey&#39;s HSD &lt;0.01&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; #</code></pre>
 </div>
 <div id="adjusting-look-and-feel-theme" class="section level3">
 <h3>Adjusting Look and Feel (theme)</h3>
 <p>The first thing we can do is change the default theme from <code>theme_grey()</code> to <code>theme_bw()</code>. We will simultaneously set the base size of the font to be 14pt.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme_bw(base_size = 14))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>There are many different default themes available for ggplot2 objects that change many aspects of the look and feel. The <em>ggthemes</em> contains many popular themes such as fivethirtyeight and economist. Of course, we can make it prettier before including it in our final manuscript.</p>
 <p>To adjust granular aspects of the theme, we can use the <code>theme()</code> function, which contains a whopping 71 different options all related to the layout of the non-data aspects of the plot.</p>
 <pre class="r"><code>&gt; ?theme</code></pre>
@@ -457,16 +486,16 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
      </code></pre>
 <p>When we inspect the help page of the <code>theme()</code> function, we can find out how to adjust several parameters to make out plot look acceptable:</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 1)) # This looks the same</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 2)) # This is too skinny</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 1.25)) # I think this is perfect!</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(panel.grid = element_blank()))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-4.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Since the information in the legend is repetitive, we can remove it. If you ‘Google’ how to remove the legend in ggplot2, you will find that you can use <code>guides(fill=FALSE)</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + guides(fill=FALSE))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="putting-it-all-together" class="section level3">
 <h3>Putting it all together</h3>
@@ -476,12 +505,14 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 +   ggtitle(&quot;Effect of Fungicides on Yield&quot;) +
 +   xlab(&quot;Treatment Applied&quot;) +
 +   ylab(&quot;Yield (bu/acre)&quot;) +
++   annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176, label=&quot;*&quot;, size=10) +
++   labs(caption=&quot;* indicates significant difference by Tukey&#39;s HSD &lt;0.01&quot;) +
 +   theme_bw(base_size = 14) +
 +   theme(aspect.ratio = 1.25) +
 +   theme(panel.grid = element_blank()) +
 +   guides(fill=FALSE)
 &gt; yield.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We can now create a similar plot for Severity Data.</p>
 <pre class="r"><code>&gt; severity.plot &lt;- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
 +   geom_boxplot() +
@@ -490,12 +521,16 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 +   theme(aspect.ratio = 1.5) +
 +   theme(panel.grid = element_blank()) +
 +   xlab(&quot;Treatment Applied&quot;) +
-+   ylab(&quot;Disease Severity&quot;)
++   ylab(&quot;Disease Severity&quot;) +
++   annotate(&quot;text&quot;, x=&quot;Control&quot;, y= 5.75, label=&quot;a&quot;, size=5) +
++   annotate(&quot;text&quot;, x=&quot;Fungicide_A&quot;, y= 5.35, label=&quot;b&quot;, size=5)+
++   annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 4.35, label=&quot;c&quot;, size=5) +
++   labs(caption=&quot;letters indicates significant differences by Tukey&#39;s HSD &lt;0.01&quot;) 
 &gt; severity.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The text of the title is not in the center. To format text elements of the plot, we can use the function <code>element_text()</code> inside <code>theme()</code>. Since we need to edit the text of the plot title, we need to specify <code>plot.title = element_text()</code>. Since we need to adjust the text horizontally in the center, we modify it to <code>theme(plot.title = element_text(hjust = 0.5))</code>.</p>
-<pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + theme(plot.title = element_text(hjust = 0.5)))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + theme(plot.title = element_text(hjust = 0.5), plot.caption=element_text(hjust=.5)))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="step-2-saving-our-plot" class="section level2">
