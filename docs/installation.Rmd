@@ -75,6 +75,6 @@ install.packages(c("dplyr", "ggplot2"), repos = "https://cran.rstudio.com")
 [stat545]: http://stat545.com/block000_r-rstudio-install.html
 [R]: https://cloud.r-project.org/
 [RStudio]: https://www.rstudio.com/products/rstudio/download/
-[Workshop Materials]: https://github.com/kaitlinmgold/Intro-R-Workshop-UWMadison/archive/master.zip
+[Workshop Materials]: https://github.com/kaitlinmgold/Intro-R-Workshop-UWMadison-master/archive/master.zip
 [dplyr]: https://dplyr.tidyverse.org
 [ggplot2]: https://ggplot2.tidyverse.org
