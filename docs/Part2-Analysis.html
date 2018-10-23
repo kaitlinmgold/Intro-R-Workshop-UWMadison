@@ -771,15 +771,10 @@ Fungicide_B-Control     -1.416667 -1.5657962 -1.2675371 0.00e+00
 Fungicide_B-Fungicide_A -1.016667 -1.1657962 -0.8675371 0.00e+00</code></pre>
 <p>All the treatment pairs are significantly different from each other as the p-value is &lt; 0.05.</p>
 <pre class="r"><code>&gt; #</code></pre>
-</div>
-<div id="agricolae-package" class="section level2">
-<h2>Agricolae Package</h2>
 <p>Agricolae is a package that helps you with automatically designing and analyzing experiments (like an RCBD, or strip-plot) but also includes good functionality for doing multiple post-hoc tests, including Tukey’s HSD and Fischer’s LSD. Agricolae also contains a function to automatically calculate AUDPC. If you would like more information on using ‘agricolae’ please see the vignette here: <a href="https://cran.r-project.org/web/packages/agricolae/vignettes/tutorial.pdf" class="uri">https://cran.r-project.org/web/packages/agricolae/vignettes/tutorial.pdf</a>.</p>
-<pre class="r"><code>&gt; #
-&gt; install.packages(&quot;agricolae&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;agricolae&quot;)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
-<pre class="r"><code>&gt; library(agricolae)
-&gt; #</code></pre>
+<pre class="r"><code>&gt; library(agricolae)</code></pre>
 <p>Fischer’s LSD</p>
 <pre class="r"><code>&gt; yield.lsd &lt;- LSD.test(fit_yield, &quot;Treatment&quot;)
 &gt; yield.lsd</code></pre>
@@ -812,7 +807,6 @@ Control              173.8700      b
 
 attr(,&quot;class&quot;)
 [1] &quot;group&quot;</code></pre>
-<pre class="r"><code>&gt; #</code></pre>
 <p>Tukey’s HSD</p>
 <pre class="r"><code>&gt; yield.hsd &lt;- HSD.test(fit_yield, &quot;Treatment&quot;)
 &gt; yield.hsd</code></pre>
