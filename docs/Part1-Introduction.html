@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -91,6 +93,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -343,8 +348,8 @@ div.tocify {
 <p>A script is a text document that contains instructions and commands The # symbol is used to leave comments, which R will not try to interpret as a command.</p>
 <p>The console (below) is for submitting commands to be interpreted in R. To run a command in the console, you can copy+paste it into the console and press enter.</p>
 <p>Copy and paste the following into the console and run it:</p>
-<pre class="r"><code>&gt; print(&quot;the instructor&#39;s name is Sydney&quot;)  </code></pre>
-<pre><code>[1] &quot;the instructor&#39;s name is Sydney&quot;</code></pre>
+<pre class="r"><code>&gt; print(&quot;the instructor&#39;s name is Katie&quot;)  </code></pre>
+<pre><code>[1] &quot;the instructor&#39;s name is Katie&quot;</code></pre>
 <p>Run a single line of your script in the console by placing your cursor on the line you want to submit and use your cursor to press the “Run” button at the top right. You can also use the shortcut key strokes cmd+enter (mac) or ctrl+enter (PC) to run a single line at a time.</p>
 <p>The two other most important keyboard shortcuts that you’ll want to use are the <em>Tab</em> key to auto-complete your typing at the command line and ctrl+up arrow or cmd+up arrow to access the most recently typed commands.</p>
 <p>You can also select only part of a line to have it run on the console. Try running the following command without copy+paste: print(“my name is _____”)</p>
@@ -461,30 +466,30 @@ character data as an object and will produce an error.</p>
 <p>What is the length of your name? We can find out using the function length()</p>
 <pre class="r"><code>&gt; length(name)</code></pre>
 <pre><code>[1] 2</code></pre>
-<p>Let’s compare this to a vector that contains only numeric data. For this example, let’s create three objects to represent today’s date in numbers for the month (07), day (28), and year (2018).</p>
-<pre class="r"><code>&gt; month &lt;- 07
-&gt; day &lt;- 28
+<p>Let’s compare this to a vector that contains only numeric data. For this example, let’s create three objects to represent today’s date in numbers for the month (10), day (24), and year (2018).</p>
+<pre class="r"><code>&gt; month &lt;- 10
+&gt; day &lt;- 24
 &gt; year &lt;- 2018</code></pre>
 <p>combine those three objects using the <em>combine</em> function:</p>
 <pre class="r"><code>&gt; today &lt;- c(month, day, year)</code></pre>
 <p>Inspect this object by typing the name <code>today</code> at the command line. You’ll see that R has eliminated the zero that preceeds the 6 and has kept the order we provided for these elements in the vector. Let’s take a look at the structure of today.</p>
 <pre class="r"><code>&gt; str(today)</code></pre>
-<pre><code> num [1:3] 7 28 2018</code></pre>
+<pre><code> num [1:3] 10 24 2018</code></pre>
 <p>You’ll notice that the vector has three elements [1:3] and it contains only numeric data.</p>
-<p>Let’s do the same thing using the name July for month and see how that changes our vector. Notice that we are not modifying the object <em>month</em>, we are simply combining our two existing objects with the word “July”.</p>
-<pre class="r"><code>&gt; c(&quot;July&quot;, day, year)   </code></pre>
-<pre><code>[1] &quot;July&quot; &quot;28&quot;   &quot;2018&quot;</code></pre>
+<p>Let’s do the same thing using the name October for month and see how that changes our vector. Notice that we are not modifying the object <em>month</em>, we are simply combining our two existing objects with the word “October”.</p>
+<pre class="r"><code>&gt; c(&quot;October&quot;, day, year)   </code></pre>
+<pre><code>[1] &quot;October&quot; &quot;24&quot;      &quot;2018&quot;   </code></pre>
 <p>In this case we didn’t re-assign the object named <code>today</code>. To inspect the structure of this vector, we can wrap the statement within the str() function, as shown below. We also want to inspect the data class (ie. whether numeric or character) using the function class(). Don’t forget to use the up-arrow to access the last like that you ran!</p>
-<pre class="r"><code>&gt; str(c(&quot;July&quot;, day, year)) # this shows us the structure of the object</code></pre>
-<pre><code> chr [1:3] &quot;July&quot; &quot;28&quot; &quot;2018&quot;</code></pre>
-<pre class="r"><code>&gt; class(c(&quot;July&quot;, day, year))</code></pre>
+<pre class="r"><code>&gt; str(c(&quot;&quot;, day, year)) # this shows us the structure of the object</code></pre>
+<pre><code> chr [1:3] &quot;&quot; &quot;24&quot; &quot;2018&quot;</code></pre>
+<pre class="r"><code>&gt; class(c(&quot;October&quot;, day, year))</code></pre>
 <pre><code>[1] &quot;character&quot;</code></pre>
 <p>Notice how R is trying to keep our data organized according to type. Rather than coding this vector as containing numbers and characters, it has decided that because it can’t call everything in our vector a number that it will call everything characters. This process is called <em>coercion</em>.</p>
 <p>Let’s say we wanted to create a table that showed every date this month:</p>
 <pre><code>  day   month   year
-  1     6       2018
-  2     6       2018
-  3     6       2018
+  1     10       2018
+  2     10       2018
+  3     10       2018
   ...</code></pre>
 <p>We know there are 31 days in the month, so we can modify the object day to contain all of the 31 days in this month. Instead of typing each number out by hand, we can place a colon (<code>:</code>) between 1 and 31, which is a shortcut in R for creating sequences of numbers.</p>
 <pre class="r"><code>&gt; 1:31</code></pre>
@@ -493,20 +498,21 @@ character data as an object and will produce an error.</p>
 <p>You see at in the console that this created a sequence of 31 numbers from 1 to 31. Let’s go ahead and assign this to the object <code>day</code>.</p>
 <pre class="r"><code>&gt; day &lt;- 1:31</code></pre>
 <p>For the objects month and year, we don’t need to modify them, however, we want to repeat each of them a total of 31 times because we need to repeat each, once for each day.</p>
-<p>We can easily repeat the number 7 a total of 31 times using the function <code>rep()</code>, specifying how many <code>times</code> we should repeat this object. Let’s assign <code>7</code> to <code>month</code> and modify the object month to contain 31 copies.</p>
-<pre class="r"><code>&gt; month &lt;- 7
+<p>We can easily repeat the number 10 a total of 31 times using the function <code>rep()</code>, specifying how many <code>times</code> we should repeat this object. Let’s assign <code>10</code> to <code>month</code> and modify the object month to contain 31 copies.</p>
+<pre class="r"><code>&gt; month &lt;- 10
 &gt; month &lt;- rep(month, times = 31)
 &gt; month</code></pre>
-<pre><code> [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[24] 10 10 10 10 10 10 10 10</code></pre>
 <p>Let’s check to make sure that month is correct using the function <code>length()</code>:</p>
 <pre class="r"><code>&gt; length(month)</code></pre>
 <pre><code>[1] 31</code></pre>
 <p>There are 30 elements in this vector and we can inspect individual elements in the vector based on their ordered position using square brackets:</p>
-<pre class="r"><code>&gt; day[28]  </code></pre>
-<pre><code>[1] 28</code></pre>
-<pre class="r"><code>&gt; month[28] # the number inside the brackets corresponds to location of element in list, not value</code></pre>
-<pre><code>[1] 7</code></pre>
-<p>In this case, the 28th element in <code>day</code> is 28, and the 28th element in <code>month</code> is 7 which confirms that we created this correctly.</p>
+<pre class="r"><code>&gt; day[24]  </code></pre>
+<pre><code>[1] 24</code></pre>
+<pre class="r"><code>&gt; month[24] # the number inside the brackets corresponds to location of element in list, not value</code></pre>
+<pre><code>[1] 10</code></pre>
+<p>In this case, the 24th element in <code>day</code> is 24, and the 24th element in <code>month</code> is 10 which confirms that we created this correctly.</p>
 <blockquote>
 <p>Type <code>day[32]</code> into your R console. What do you get? What does it mean? Ask yourself the question, “Are there any months with 32 days?”</p>
 </blockquote>
@@ -530,275 +536,280 @@ character data as an object and will produce an error.</p>
 <h2>Step 4: Data frames, basic data manipulation, and finding help</h2>
 <p>Remember that our goal here is to create a table with the columns “month”, “day”, and “year”. First, here’s a quick reminder of what we want this to look like:</p>
 <pre><code>  day   month   year
-  1     7       2018
-  2     7       2018
-  3     7       2018
+  1     10       2018
+  2     10       2018
+  3     10       2018
   ...</code></pre>
 <p>In order to create a data frame, we can use the command <code>data.frame()</code>. This function will create columns out of vectors that are all the same length. In the function, we just have to specify name of the column and populate it with vector data.</p>
-<pre class="r"><code>&gt; July &lt;- data.frame(day = day, month = month, year = year)</code></pre>
+<pre class="r"><code>&gt; October &lt;- data.frame(day = day, month = month, year = year)</code></pre>
 <p>Let’s inspect this new object in the same way as vectors:</p>
-<pre class="r"><code>&gt; July</code></pre>
+<pre class="r"><code>&gt; October</code></pre>
 <pre><code>   day month year
-1    1     7 2018
-2    2     7 2018
-3    3     7 2018
-4    4     7 2018
-5    5     7 2018
-6    6     7 2018
-7    7     7 2018
-8    8     7 2018
-9    9     7 2018
-10  10     7 2018
-11  11     7 2018
-12  12     7 2018
-13  13     7 2018
-14  14     7 2018
-15  15     7 2018
-16  16     7 2018
-17  17     7 2018
-18  18     7 2018
-19  19     7 2018
-20  20     7 2018
-21  21     7 2018
-22  22     7 2018
-23  23     7 2018
-24  24     7 2018
-25  25     7 2018
-26  26     7 2018
-27  27     7 2018
-28  28     7 2018
-29  29     7 2018
-30  30     7 2018
-31  31     7 2018</code></pre>
-<pre class="r"><code>&gt; length(July)</code></pre>
+1    1    10 2018
+2    2    10 2018
+3    3    10 2018
+4    4    10 2018
+5    5    10 2018
+6    6    10 2018
+7    7    10 2018
+8    8    10 2018
+9    9    10 2018
+10  10    10 2018
+11  11    10 2018
+12  12    10 2018
+13  13    10 2018
+14  14    10 2018
+15  15    10 2018
+16  16    10 2018
+17  17    10 2018
+18  18    10 2018
+19  19    10 2018
+20  20    10 2018
+21  21    10 2018
+22  22    10 2018
+23  23    10 2018
+24  24    10 2018
+25  25    10 2018
+26  26    10 2018
+27  27    10 2018
+28  28    10 2018
+29  29    10 2018
+30  30    10 2018
+31  31    10 2018</code></pre>
+<pre class="r"><code>&gt; length(October)</code></pre>
 <pre><code>[1] 3</code></pre>
-<p>Using the <code>length()</code> function, we see it says 3. This is because <code>July</code> has three columns: day, month, and year. A data frame is a two-dimensional object which stores its information in rows and columns.</p>
+<p>Using the <code>length()</code> function, we see it says 3. This is because <code>October</code> has three columns: day, month, and year. A data frame is a two-dimensional object which stores its information in rows and columns.</p>
 <p>Because this is a 2-dimensional object, we can inspect the dimensions using the <code>dim()</code> function:</p>
-<pre class="r"><code>&gt; dim(July)</code></pre>
+<pre class="r"><code>&gt; dim(October)</code></pre>
 <pre><code>[1] 31  3</code></pre>
 <p>This tells us that we have 30 rows and 3 columns. R also provides the <code>nrow()</code> and <code>ncol()</code> functions to make it easier to remember which is which:</p>
-<pre class="r"><code>&gt; nrow(July)</code></pre>
+<pre class="r"><code>&gt; nrow(October)</code></pre>
 <pre><code>[1] 31</code></pre>
-<pre class="r"><code>&gt; ncol(July)</code></pre>
+<pre class="r"><code>&gt; ncol(October)</code></pre>
 <pre><code>[1] 3</code></pre>
 <p>What happens when we use the <code>str()</code> function?</p>
-<pre class="r"><code>&gt; str(July)</code></pre>
+<pre class="r"><code>&gt; str(October)</code></pre>
 <pre><code>&#39;data.frame&#39;:   31 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  7 7 7 7 7 7 7 7 7 7 ...
+ $ month: num  10 10 10 10 10 10 10 10 10 10 ...
  $ year : num  2018 2018 2018 2018 2018 ...</code></pre>
 <p>We can see that it’s listing the columns we have in our table and showing us how they are represented. Notice the <code>$</code> to the left of each column name, this is how we access the columns of the data frame:</p>
-<pre class="r"><code>&gt; July$day</code></pre>
+<pre class="r"><code>&gt; October$day</code></pre>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
 [24] 24 25 26 27 28 29 30 31</code></pre>
-<pre class="r"><code>&gt; July$month</code></pre>
-<pre><code> [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
-<pre class="r"><code>&gt; July$year</code></pre>
+<pre class="r"><code>&gt; October$month</code></pre>
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[24] 10 10 10 10 10 10 10 10</code></pre>
+<pre class="r"><code>&gt; October$year</code></pre>
 <pre><code> [1] 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018
 [15] 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 2018
 [29] 2018 2018 2018</code></pre>
 <p>You can see that these are the same as the vectors we created earlier.</p>
 <p>Because this object is rather large, we didn’t get to see the top rows of the obect. A quick way to look at the top of the object is with the <code>head()</code> function and if we wanted to look at the bottom, we would use <code>tail()</code>.</p>
-<pre class="r"><code>&gt; head(July)  # if this didn&#39;t work, double-check that you spelled the object name correctly</code></pre>
+<pre class="r"><code>&gt; head(October)  # if this didn&#39;t work, double-check that you spelled the object name correctly</code></pre>
 <pre><code>  day month year
-1   1     7 2018
-2   2     7 2018
-3   3     7 2018
-4   4     7 2018
-5   5     7 2018
-6   6     7 2018</code></pre>
+1   1    10 2018
+2   2    10 2018
+3   3    10 2018
+4   4    10 2018
+5   5    10 2018
+6   6    10 2018</code></pre>
 <p>Now that we have our table, the question becomes, how do we inspect different elements?</p>
-<p>Just like we can inspect the 28th element in the <code>day</code> vector using <code>day[28]</code>, we can also use the brackets to subset a table, the only catch is that we have to use the coordinates of the row(s) and the column(s) we want. We can do this by specifying <code>[row, column]</code>. These are analagous to X and Y Cartesian coordinates. Let’s take a look at the elements in the 28th row, separately:</p>
-<pre class="r"><code>&gt; July[28, 1] # day</code></pre>
-<pre><code>[1] 28</code></pre>
-<pre class="r"><code>&gt; July[28, &quot;month&quot;] # you can use characters when the elements are named!</code></pre>
-<pre><code>[1] 7</code></pre>
-<pre class="r"><code>&gt; July[28, 3] # year</code></pre>
+<p>Just like we can inspect the 24th element in the <code>day</code> vector using <code>day[24]</code>, we can also use the brackets to subset a table, the only catch is that we have to use the coordinates of the row(s) and the column(s) we want. We can do this by specifying <code>[row, column]</code>. These are analagous to X and Y Cartesian coordinates. Let’s take a look at the elements in the 24th row, separately:</p>
+<pre class="r"><code>&gt; October[24, 1] # day</code></pre>
+<pre><code>[1] 24</code></pre>
+<pre class="r"><code>&gt; October[24, &quot;month&quot;] # you can use characters when the elements are named!</code></pre>
+<pre><code>[1] 10</code></pre>
+<pre class="r"><code>&gt; October[24, 3] # year</code></pre>
 <pre><code>[1] 2018</code></pre>
-<pre class="r"><code>&gt; July[28, -3] # here `-` means all columns except the third (year)</code></pre>
+<pre class="r"><code>&gt; October[24, -3] # here `-` means all columns except the third (year)</code></pre>
 <pre><code>   day month
-28  28     7</code></pre>
-<pre class="r"><code>&gt; July[28, -2] # day and year</code></pre>
+24  24    10</code></pre>
+<pre class="r"><code>&gt; October[24, -2] # day and year</code></pre>
 <pre><code>   day year
-28  28 2018</code></pre>
+24  24 2018</code></pre>
 <p>If we don’t specify a dimension, R will give us the entire contents of that dimension. Let’s look at the row that contains today’s date:</p>
-<pre class="r"><code>&gt; July[28, ]</code></pre>
+<pre class="r"><code>&gt; October[24, ]</code></pre>
 <pre><code>   day month year
-28  28     7 2018</code></pre>
+24  24    10 2018</code></pre>
 <p>You can also use this to access just one column of the matrix. Let’s look at month:</p>
-<pre class="r"><code>&gt; July[, 2]</code></pre>
-<pre><code> [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
+<pre class="r"><code>&gt; October[, 2]</code></pre>
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[24] 10 10 10 10 10 10 10 10</code></pre>
 <p>Notice, however that this result now appears to be a a vector! This is because of a sneaky default option called <code>drop = TRUE</code>. R tries to “help” by removing the dimensions of your data frame if you choose only one column. If you want to keep this as a data frame, you can turn off this option <em>inside the brackets</em>:</p>
-<pre class="r"><code>&gt; July[, 2, drop = FALSE]</code></pre>
+<pre class="r"><code>&gt; October[, 2, drop = FALSE]</code></pre>
 <pre><code>   month
-1      7
-2      7
-3      7
-4      7
-5      7
-6      7
-7      7
-8      7
-9      7
-10     7
-11     7
-12     7
-13     7
-14     7
-15     7
-16     7
-17     7
-18     7
-19     7
-20     7
-21     7
-22     7
-23     7
-24     7
-25     7
-26     7
-27     7
-28     7
-29     7
-30     7
-31     7</code></pre>
-<p>Now that we’ve inspected the object <code>July</code>, let’s create the same thing for the month of June. How should we do this? One option would be to create new obects for day, month, and year and combine them just like we did for July. What is the simplest method to do this, using the fewest number of steps? We can simply make a copy of <code>July</code> and delete a vector with information about the 31st day. Now that we have two dimensions, we can subset everything in July<br />
+1     10
+2     10
+3     10
+4     10
+5     10
+6     10
+7     10
+8     10
+9     10
+10    10
+11    10
+12    10
+13    10
+14    10
+15    10
+16    10
+17    10
+18    10
+19    10
+20    10
+21    10
+22    10
+23    10
+24    10
+25    10
+26    10
+27    10
+28    10
+29    10
+30    10
+31    10</code></pre>
+<p>Now that we’ve inspected the object <code>October</code>, let’s create the same thing for the month of November How should we do this? One option would be to create new obects for day, month, and year and combine them just like we did for October. What is the simplest method to do this, using the fewest number of steps? We can simply make a copy of <code>October</code> and delete a vector with information about the 31st day. Now that we have two dimensions, we can subset everything in October<br />
 except for the 31st row and all the columns of that row.</p>
-<pre class="r"><code>&gt; June &lt;- July[-31,]</code></pre>
+<pre class="r"><code>&gt; November &lt;- October[-31,]</code></pre>
 <p>Inspect what we have now:</p>
-<pre class="r"><code>&gt; str(June)  # we have an extra column</code></pre>
+<pre class="r"><code>&gt; str(November)  # we have an extra column</code></pre>
 <pre><code>&#39;data.frame&#39;:   30 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  7 7 7 7 7 7 7 7 7 7 ...
+ $ month: num  10 10 10 10 10 10 10 10 10 10 ...
  $ year : num  2018 2018 2018 2018 2018 ...</code></pre>
-<pre class="r"><code>&gt; tail(June) # we don&#39;t have 31 days</code></pre>
+<pre class="r"><code>&gt; tail(November) # we don&#39;t have 31 days</code></pre>
 <pre><code>   day month year
-25  25     7 2018
-26  26     7 2018
-27  27     7 2018
-28  28     7 2018
-29  29     7 2018
-30  30     7 2018</code></pre>
+25  25    10 2018
+26  26    10 2018
+27  27    10 2018
+28  28    10 2018
+29  29    10 2018
+30  30    10 2018</code></pre>
 <p>We need to change the month column so that it says 6 instead of 7, how can we do this? Let’s just look at the column first:</p>
-<pre class="r"><code>&gt; June$month</code></pre>
-<pre><code> [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
+<pre class="r"><code>&gt; November$month</code></pre>
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[24] 10 10 10 10 10 10 10</code></pre>
 <p>We need to add 1 to each of these values, so let’s try that!</p>
-<pre class="r"><code>&gt; June$month - 1</code></pre>
-<pre><code> [1] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</code></pre>
-<p>This worked, so now we just need to replace values in June[,2] with the new expression:</p>
-<pre class="r"><code>&gt; June$month &lt;- June$month - 1    # Did it work?
-&gt; str(June)</code></pre>
+<pre class="r"><code>&gt; November$month - 1</code></pre>
+<pre><code> [1] 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9</code></pre>
+<p>This worked, so now we just need to replace values in November[,2] with the new expression:</p>
+<pre class="r"><code>&gt; November$month &lt;- November$month - 1    # Did it work?
+&gt; str(November)</code></pre>
 <pre><code>&#39;data.frame&#39;:   30 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  6 6 6 6 6 6 6 6 6 6 ...
+ $ month: num  9 9 9 9 9 9 9 9 9 9 ...
  $ year : num  2018 2018 2018 2018 2018 ...</code></pre>
 <p>Let’s combine both of these tables into one. R provides two functions that can help us with that called rbind() and cbind() which bind a data frame with a vector (or another data frame) by rows and columns, respectively. Which one should we use? If you’re unsure, try both!</p>
-<pre class="r"><code>&gt; cbind(June, July) </code></pre>
+<pre class="r"><code>&gt; cbind(November, October) </code></pre>
 <pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 30, 31</code></pre>
 <p>We have an error! R is trying to stack them side by side and is failing to do so because of different number of rows.</p>
-<pre class="r"><code>&gt; rbind(June, July) # This works!</code></pre>
+<pre class="r"><code>&gt; rbind(November, October) # This works!</code></pre>
 <pre><code>   day month year
-1    1     6 2018
-2    2     6 2018
-3    3     6 2018
-4    4     6 2018
-5    5     6 2018
-6    6     6 2018
-7    7     6 2018
-8    8     6 2018
-9    9     6 2018
-10  10     6 2018
-11  11     6 2018
-12  12     6 2018
-13  13     6 2018
-14  14     6 2018
-15  15     6 2018
-16  16     6 2018
-17  17     6 2018
-18  18     6 2018
-19  19     6 2018
-20  20     6 2018
-21  21     6 2018
-22  22     6 2018
-23  23     6 2018
-24  24     6 2018
-25  25     6 2018
-26  26     6 2018
-27  27     6 2018
-28  28     6 2018
-29  29     6 2018
-30  30     6 2018
-31   1     7 2018
-32   2     7 2018
-33   3     7 2018
-34   4     7 2018
-35   5     7 2018
-36   6     7 2018
-37   7     7 2018
-38   8     7 2018
-39   9     7 2018
-40  10     7 2018
-41  11     7 2018
-42  12     7 2018
-43  13     7 2018
-44  14     7 2018
-45  15     7 2018
-46  16     7 2018
-47  17     7 2018
-48  18     7 2018
-49  19     7 2018
-50  20     7 2018
-51  21     7 2018
-52  22     7 2018
-53  23     7 2018
-54  24     7 2018
-55  25     7 2018
-56  26     7 2018
-57  27     7 2018
-58  28     7 2018
-59  29     7 2018
-60  30     7 2018
-61  31     7 2018</code></pre>
-<pre class="r"><code>&gt; summer &lt;- rbind(June, July)</code></pre>
+1    1     9 2018
+2    2     9 2018
+3    3     9 2018
+4    4     9 2018
+5    5     9 2018
+6    6     9 2018
+7    7     9 2018
+8    8     9 2018
+9    9     9 2018
+10  10     9 2018
+11  11     9 2018
+12  12     9 2018
+13  13     9 2018
+14  14     9 2018
+15  15     9 2018
+16  16     9 2018
+17  17     9 2018
+18  18     9 2018
+19  19     9 2018
+20  20     9 2018
+21  21     9 2018
+22  22     9 2018
+23  23     9 2018
+24  24     9 2018
+25  25     9 2018
+26  26     9 2018
+27  27     9 2018
+28  28     9 2018
+29  29     9 2018
+30  30     9 2018
+31   1    10 2018
+32   2    10 2018
+33   3    10 2018
+34   4    10 2018
+35   5    10 2018
+36   6    10 2018
+37   7    10 2018
+38   8    10 2018
+39   9    10 2018
+40  10    10 2018
+41  11    10 2018
+42  12    10 2018
+43  13    10 2018
+44  14    10 2018
+45  15    10 2018
+46  16    10 2018
+47  17    10 2018
+48  18    10 2018
+49  19    10 2018
+50  20    10 2018
+51  21    10 2018
+52  22    10 2018
+53  23    10 2018
+54  24    10 2018
+55  25    10 2018
+56  26    10 2018
+57  27    10 2018
+58  28    10 2018
+59  29    10 2018
+60  30    10 2018
+61  31    10 2018</code></pre>
+<pre class="r"><code>&gt; fall &lt;- rbind(November, October)</code></pre>
 <p>Inspect this object to ensure it was made correctly.</p>
-<pre class="r"><code>&gt; str(summer)</code></pre>
+<pre class="r"><code>&gt; str(fall)</code></pre>
 <pre><code>&#39;data.frame&#39;:   61 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  6 6 6 6 6 6 6 6 6 6 ...
+ $ month: num  9 9 9 9 9 9 9 9 9 9 ...
  $ year : num  2018 2018 2018 2018 2018 ...</code></pre>
-<pre class="r"><code>&gt; head(summer)</code></pre>
+<pre class="r"><code>&gt; head(fall)</code></pre>
 <pre><code>  day month year
-1   1     6 2018
-2   2     6 2018
-3   3     6 2018
-4   4     6 2018
-5   5     6 2018
-6   6     6 2018</code></pre>
-<pre class="r"><code>&gt; tail(summer)</code></pre>
+1   1     9 2018
+2   2     9 2018
+3   3     9 2018
+4   4     9 2018
+5   5     9 2018
+6   6     9 2018</code></pre>
+<pre class="r"><code>&gt; tail(fall)</code></pre>
 <pre><code>   day month year
-56  26     7 2018
-57  27     7 2018
-58  28     7 2018
-59  29     7 2018
-60  30     7 2018
-61  31     7 2018</code></pre>
-<p>We now have a new object summer that contains only numeric data. Let’s revise this object so that it uses names for the month instead of numbers. We want it to look like this:</p>
+56  26    10 2018
+57  27    10 2018
+58  28    10 2018
+59  29    10 2018
+60  30    10 2018
+61  31    10 2018</code></pre>
+<p>We now have a new object fall that contains only numeric data. Let’s revise this object so that it uses names for the month instead of numbers. We want it to look like this:</p>
 <pre><code>  day   month   year  
-  1     &quot;June&quot;   2018  
-  2     &quot;June&quot;   2018  
-  3     &quot;June&quot;   2018
+  1     &quot;November&quot;   2018  
+  2     &quot;November&quot;   2018  
+  3     &quot;November&quot;   2018
   ...</code></pre>
-<p>Months need to be changed from the number 6 to “July” and from 7 to “July” in the second column. Let’s first look at the month column.</p>
-<pre class="r"><code>&gt; summer$month</code></pre>
-<pre><code> [1] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7
-[36] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
-<p>We want to specify only the cells in this list that are 6. We know that rows 1 to 30 contain 6’s and the rest contain 7’s, which means we can inspect those rows in the object summer:</p>
-<pre class="r"><code>&gt; summer[1:30, &quot;month&quot;]     # June</code></pre>
-<pre><code> [1] 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</code></pre>
-<pre class="r"><code>&gt; summer[-c(1:31), &quot;month&quot;] # July</code></pre>
-<pre><code> [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7</code></pre>
+<p>Months need to be changed from the number 6 to “October” and from 7 to “October” in the second column. Let’s first look at the month column.</p>
+<pre class="r"><code>&gt; fall$month</code></pre>
+<pre><code> [1]  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9
+[24]  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[47] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10</code></pre>
+<p>We want to specify only the cells in this list that are 6. We know that rows 1 to 30 contain 6’s and the rest contain 7’s, which means we can inspect those rows in the object fall:</p>
+<pre class="r"><code>&gt; fall[1:30, &quot;month&quot;]     # November</code></pre>
+<pre><code> [1] 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9</code></pre>
+<pre class="r"><code>&gt; fall[-c(1:31), &quot;month&quot;] # October</code></pre>
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+[24] 10 10 10 10 10 10 10</code></pre>
 <blockquote>
-<p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of July? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
+<p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of October? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
 either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
 </blockquote>
 <pre class="r"><code>&gt; ?ifelse
@@ -821,51 +832,53 @@ either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</cod
      3. What does it return? (Value)
      
      </code></pre>
-<p>In order to use <code>ifelse</code>, we will need to provide three things: 1. A logical question about the elements of an object : summer$month == 6 2. Values for TRUE elements : “June” 3. Values for FALSE elements : “July”</p>
-<pre class="r"><code>&gt; ifelse(summer$month == 6, yes = &quot;June&quot;, no = &quot;July&quot;)</code></pre>
-<pre><code> [1] &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot;
-[11] &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot;
-[21] &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot;
-[31] &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot;
-[41] &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot;
-[51] &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot; &quot;July&quot;
-[61] &quot;July&quot;</code></pre>
-<pre class="r"><code>&gt; summer$month &lt;- ifelse(summer$month == 6, yes = &quot;June&quot;, no = &quot;July&quot;)</code></pre>
+<p>In order to use <code>ifelse</code>, we will need to provide three things: 1. A logical question about the elements of an object : fall$month == 6 2. Values for TRUE elements : “November” 3. Values for FALSE elements : “October”</p>
+<pre class="r"><code>&gt; ifelse(fall$month == 6, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
+<pre><code> [1] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+ [8] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[15] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[22] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[29] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[36] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[43] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[50] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
+[57] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;</code></pre>
+<pre class="r"><code>&gt; fall$month &lt;- ifelse(fall$month == 6, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
 <blockquote>
-<p>Notice that we had to use <code>==</code> to indicate equality. This is so that R doesn’t get confused and assume we are using the argument assignment, <code>=</code>. Now, let’s inspect summer.</p>
+<p>Notice that we had to use <code>==</code> to indicate equality. This is so that R doesn’t get confused and assume we are using the argument assignment, <code>=</code>. Now, let’s inspect fall.</p>
 </blockquote>
-<pre class="r"><code>&gt; str(summer)</code></pre>
+<pre class="r"><code>&gt; str(fall)</code></pre>
 <pre><code>&#39;data.frame&#39;:   61 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: chr  &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; ...
+ $ month: chr  &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; ...
  $ year : num  2018 2018 2018 2018 2018 ...</code></pre>
-<pre class="r"><code>&gt; head(summer)</code></pre>
-<pre><code>  day month year
-1   1  June 2018
-2   2  June 2018
-3   3  June 2018
-4   4  June 2018
-5   5  June 2018
-6   6  June 2018</code></pre>
+<pre class="r"><code>&gt; head(fall)</code></pre>
+<pre><code>  day   month year
+1   1 October 2018
+2   2 October 2018
+3   3 October 2018
+4   4 October 2018
+5   5 October 2018
+6   6 October 2018</code></pre>
 <p>Let’s change first letter of every column name to uppercase i.e., replace<br />
 “day” with “Day” and so on. We can do this using <code>colnames()</code> function.</p>
-<pre class="r"><code>&gt; colnames(summer) # Current column names</code></pre>
+<pre class="r"><code>&gt; colnames(fall) # Current column names</code></pre>
 <pre><code>[1] &quot;day&quot;   &quot;month&quot; &quot;year&quot; </code></pre>
-<pre class="r"><code>&gt; colnames(summer) &lt;- c(&quot;Day&quot;, &quot;Month&quot;, &quot;Year&quot;) # New column names</code></pre>
-<p>Let’s inspect summer again.</p>
-<pre class="r"><code>&gt; str(summer)</code></pre>
+<pre class="r"><code>&gt; colnames(fall) &lt;- c(&quot;Day&quot;, &quot;Month&quot;, &quot;Year&quot;) # New column names</code></pre>
+<p>Let’s inspect fall again.</p>
+<pre class="r"><code>&gt; str(fall)</code></pre>
 <pre><code>&#39;data.frame&#39;:   61 obs. of  3 variables:
  $ Day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ Month: chr  &quot;June&quot; &quot;June&quot; &quot;June&quot; &quot;June&quot; ...
+ $ Month: chr  &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; ...
  $ Year : num  2018 2018 2018 2018 2018 ...</code></pre>
-<pre class="r"><code>&gt; head(summer)</code></pre>
-<pre><code>  Day Month Year
-1   1  June 2018
-2   2  June 2018
-3   3  June 2018
-4   4  June 2018
-5   5  June 2018
-6   6  June 2018</code></pre>
+<pre class="r"><code>&gt; head(fall)</code></pre>
+<pre><code>  Day   Month Year
+1   1 October 2018
+2   2 October 2018
+3   3 October 2018
+4   4 October 2018
+5   5 October 2018
+6   6 October 2018</code></pre>
 </div>
 </div>
 
