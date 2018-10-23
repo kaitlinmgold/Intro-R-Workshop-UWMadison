@@ -1,0 +1,8 @@
+
+pre code {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: block;
+  white-space: pre; 
+  word-wrap: normal;
+}

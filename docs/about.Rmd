@@ -1,0 +1,30 @@
+---
+title: "About"
+---
+
+This introduction to R is designed to be a companion to a workshop lasting 4 
+hours introducing plant pathologists to the basics of R by using an example of
+fungicide trial data.
+
+Workshop Outcomes
+-----------------
+
+In this workshop, we expect to present enough information to get you started on 
+your way to learning R. Because this is a four hour workshop, our goal is to 
+demonstrate a simple analysis in R, emphasizing problem solving and 
+troubleshooting. By the end of the workshop you should have just enough
+background to be able to learn more.
+
+Authors
+-------
+
+Workshop originally built by Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian N. Kamvar.
+Workshop modified and offered October 2018 by Kaitlin M. Gold. 
+
+Website
+-------
+
+This website was built using R and Rmarkdown.
+
+Github: https://github.com/everhartlab/IntroR_Workshop
+

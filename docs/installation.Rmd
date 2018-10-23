@@ -1,0 +1,80 @@
+---
+title: "Before The Workshop"
+---
+
+
+Again, because this is a four hour workshop, we ask that you come prepared with
+a laptop that has the most recent versions of [R] and [RStudio] installed, and
+our [workshop materials] downloaded to your Desktop. **We cannot provide service
+for installation the day of the workshop. Those who are not prepared for the 
+workshop may be asked to give up their seat to those on the waitlist**.
+
+Installation
+------------
+
+Even if you already have [R] installed on your system, you really should make
+sure its up to date. This ensures that there are no problems due to outdated
+software. For more details about installing [R], [RStudio], and keeping
+everything up to date, UBC's [STAT545] page is an excellent resource.
+
+ - [R]
+ - [RStudio]
+ - [Workshop Materials] (zip file; unzip to Desktop)
+ - (Once you've installed R) packages "[dplyr]" and "[ggplot2]"
+
+Verification
+------------
+
+Once you have installed [R], we should verify that you have the correct version.
+
+ 1. Open R (or RStudio) on your computer
+ 2. Enter the following in the R console after the `>`    
+        
+        R.version.string == "R version 3.5.1 (2018-07-02)"
+        
+ 3. Make sure the result is **`[1] TRUE`**    
+    (If the result is `[1] FALSE`, please quit R and try the installation again)
+ 
+ 
+Workshop Materials
+------------------
+
+Our [workshop materials] is a zip file that contains a folder called 
+`IntroR-master/` with the folowing structure:
+
+```
+.
+├── IntroR_Workshop.Rproj
+├── LICENSE
+├── Makefile
+├── Part1-Introduction.R
+├── Part2-Analysis.R
+├── Part3-Visualization.R
+├── README.md
+├── data/
+│   ├── fungicide_dat.csv
+│   └── README.md
+└── docs/
+    └── ...
+```
+
+We are providing the R scripts for the workshop, so that you can easily 
+execute the code in these scripts to follow along.
+
+Installing Packages
+-------------------
+
+To install [dplyr] and [ggplot2] to your system, open R and type:
+
+```{r, eval = FALSE}
+install.packages(c("dplyr", "ggplot2"), repos = "https://cran.rstudio.com")
+```
+
+
+
+[stat545]: http://stat545.com/block000_r-rstudio-install.html
+[R]: https://cloud.r-project.org/
+[RStudio]: https://www.rstudio.com/products/rstudio/download/
+[Workshop Materials]: https://github.com/everhartlab/IntroR_Workshop/archive/master.zip
+[dplyr]: https://dplyr.tidyverse.org
+[ggplot2]: https://ggplot2.tidyverse.org

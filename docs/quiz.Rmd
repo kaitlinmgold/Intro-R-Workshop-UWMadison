@@ -1,0 +1,9 @@
+---
+title: "Test Your Knowledge"
+---
+
+If you are already familiar with the basics of R, take this quiz to test your knowledge.
+
+### [Quiz Questions](https://docs.google.com/forms/d/1XdJ1JR07VFuhYaa65UR3IVHdzt5fv-u-el-rg8xarOg/edit?ts=5b2d9e2c)
+
+
