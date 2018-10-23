@@ -26,5 +26,5 @@ Website
 
 This website was built using R and Rmarkdown.
 
-Github: https://github.com/everhartlab/IntroR_Workshop
+Github: https://github.com/kaitlinmgold/Intro-R-Workshop-UWMadison
 
