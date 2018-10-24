@@ -165,7 +165,7 @@ yield.plot
 #
 # ### Annotating with Tukey's HSD letters 
 # 
-# # Remember that 'Fungicide_B' is signfificantly different from both 'Fungicide_A'
+# Remember that 'Fungicide_B' is signfificantly different from both 'Fungicide_A'
 # and 'Control'. 'Fungicide_A' and 'Control' are not signficantly different from 
 # each other. If we want to include stars or letters indicating significant differences
 # we can use 'annotate()'.  
