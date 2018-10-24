@@ -353,17 +353,12 @@ default place where R will begin reading and writing files. For example, you<br 
 can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code> [1] &quot;data&quot;                      &quot;docs&quot;                     
- [3] &quot;IntroR_Workshop.Rproj&quot;     &quot;LICENSE&quot;                  
- [5] &quot;Makefile&quot;                  &quot;Part1-Introduction.R&quot;     
- [7] &quot;Part2-Analysis.R&quot;          &quot;Part3-Visualization.R&quot;    
- [9] &quot;README.md&quot;                 &quot;wordcloud experience.jpeg&quot;
-[11] &quot;wordcloud.jpeg&quot;            &quot;wordcloud.R&quot;              </code></pre>
+<pre><code>[1] &quot;data&quot;                  &quot;docs&quot;                  &quot;IntroR_Workshop.Rproj&quot;
+[4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
+[7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the fungicide example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
-<pre><code>[1] &quot;fungicide_dat.csv&quot;                                  
-[2] &quot;Intro to R for Plant Pathologists Workshop RSVP.csv&quot;
-[3] &quot;README.md&quot;                                          </code></pre>
+<pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
 </div>
 <div id="step-2-reading-in-data" class="section level2">
 <h2>Step 2: Reading in Data</h2>
@@ -632,9 +627,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>Error in View(yield_summary): X11 dataentry cannot be loaded</code></pre>
 <p>We answered our first question!</p>
 <p>You will notice that on the console below, the code for creating <code>yield_summary</code> has <code>+</code> signs before every line. The plus signs just indicate that R is waiting for the code to be finished. This sign also appears when we forget to put a closing paranthesis ‘)’. Try this:</p>
-<pre class="r"><code>&gt; str(yield_summary
-+ 
-+ )</code></pre>
+<pre class="r"><code>&gt; str(yield_summary)</code></pre>
 <pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:
  $ Treatment : Factor w/ 3 levels &quot;Control&quot;,&quot;Fungicide_A&quot;,..: 1 2 3
  $ Mean_yield: num  10914 10916 11035</code></pre>
