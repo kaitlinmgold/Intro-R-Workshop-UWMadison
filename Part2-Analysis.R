@@ -207,9 +207,7 @@ View(yield_summary)
 # code to be finished. This sign also appears when we forget to put a closing
 # paranthesis ')'. Try this:
 # 
-str(yield_summary
-
-)
+str(yield_summary)
 # 
 # Let's go to our second question.
 # 
