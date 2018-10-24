@@ -164,16 +164,14 @@ yield.plot
 # darker. We also want to include the results of our ANOVA and Tukey's HSD. 
 #
 # ### Annotating with Tukey's HSD letters 
-# 
 # Remember that 'Fungicide_B' is signfificantly different from both 'Fungicide_A'
 # and 'Control'. 'Fungicide_A' and 'Control' are not signficantly different from 
 # each other. If we want to include stars or letters indicating significant differences
 # we can use 'annotate()'.  
-#
 # With Letters
-yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
+(yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
              annotate("text", x="Fungicide_A", y= 174.5, label="A", size=5)+
-             annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5)
+             annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5) )
 # 
 # With stars
 (yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176.25, label="*", size=10))

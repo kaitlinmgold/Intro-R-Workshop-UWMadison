@@ -15,9 +15,11 @@ title: "References"
   - [Epidemiology & Data Science] plant pathology & data science course by the Garrett Lab at University of Florida. 
   Great exploratory sections on using R for data science in plant pathology. 
   - [Sampling, Data Management and Visualization] UNL Course lead by Dr. Drew Tyre
+  - [RStudio Cloud Data Camp Courses] browse available data camps for learning to work in R 
 
 # General Resources
  - [R for Beginners] to build a strong foundation
+ - [RStudio Cloud Primers] great tutorials to learn a variety of R skills
  - [RStudio Cheat Sheets] great visual maps for data analysis (highly recommend the dplyr, data import, and ggplot2 sheets!)
  - [R style guide] to make sure your code is beautiful because when your code is
    easy to read, your future self will thank you.
@@ -85,3 +87,5 @@ These accounts are great to follow to see what's going on in R
 [Googling for Help]: http://datacarpentry.org/semester-biology/materials/googling-for-help/ 
 [R Stats 4 Ag]: http://rstats4ag.org/
 [agricolae]: https://cran.r-project.org/web/packages/agricolae/vignettes/tutorial.pdf 
+[RStudio Cloud Primers]: https://rstudio.cloud/learn/primers
+[RStudio Cloud Data Camp Courses]: https://rstudio.cloud/learn/data-camp-courses
