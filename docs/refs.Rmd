@@ -7,18 +7,41 @@ title: "References"
  - [swirl] Interactive introduction to R so you can learn R, using R.
  - [tidyverse] Core package to load packages dedicated to working with tidy
    data frames.
+ - [agricolae] package to help you design and analyze agricultural experiments (RCBD design, post-hoc tests)
    
-# Resources
+# Online work-at-your-own-pace courses
+  - [Working with Data in the Tidyverse] Data Camp course for using the tidyverse for data manipulation. Uses data 
+  from the Great British Bake Off! 
+  - [Epidemiology & Data Science] plant pathology & data science course by the Garrett Lab at University of Florida. 
+  Great exploratory sections on using R for data science in plant pathology. 
+  - [Sampling, Data Management and Visualization] UNL Course lead by Dr. Drew Tyre
+
+# General Resources
  - [R for Beginners] to build a strong foundation
  - [RStudio Cheat Sheets] great visual maps for data analysis (highly recommend the dplyr, data import, and ggplot2 sheets!)
  - [R style guide] to make sure your code is beautiful because when your code is
    easy to read, your future self will thank you.
- - [UNL Statistics Help Desk] Statistical Cross-disciplinary Collaboration and Consulting Lab (SC3L)
+ - [R for Data Science] how to structure, transform, model, and visualize data, written by the creator of the tidyverse
  - [CRAN task views] Grouping notable packages in specific topics such as
    Phylogenetics, Time Series, Experimental Design, etc.
  - [Happy Git and GitHub for the useR] a long-form tutorial on working
    reproducibly in R and RStudio with Git and GitHub
- - [Sampling, Data Management and Visualization] UNL Course lead by Dr. Drew Tyre
+ - [Googling for Help] tips for googling for help, section of data carpentry for biologists course
+ - [R Stats 4 Ag] great resource for how to use R to analyze statistical designs that are commonly used in agricultural 
+ experiments
+ 
+# Data Visualization
+ - [Top 50 ggplot2 visualizations] for how to build (with code!) the most common ggplot2 visualizations
+ - [R Graph Gallery] for data viz inspiration and reproducible code 
+ - [FlowingData] for excellent tutorials for getting started with data visualization
+ - [VisualisingData] for tutorials on more advanced data visualizations 
+ 
+# UW-Madison Specific
+ - [ComBEE @ UW-Madison] bi-weekly study groups for R and Python during the semester. All levels welcome!
+ - [UW-Madison CALS Stat Consulting] For one-on-one help with data analysis from design to results
+ interpretation
+ - [Lynda.com] Basically youtube for software training. Full library of self-study software tutorials, free for
+ UW-Madison students 
  
 # Twitter 
 
@@ -35,7 +58,6 @@ These accounts are great to follow to see what's going on in R
  - [\@hadleywickham](https://twitter.com/hadleywickham) creator of the tidyverse and cheif data scientist at RStudio
 
 
- 
 # For Windows UseRs
 
  Upgrading R on Windows can sometimes be frustrating. The [intstallr R package]
@@ -45,9 +67,21 @@ These accounts are great to follow to see what's going on in R
 [Happy Git and GitHub for the useR ]: http://happygitwithr.com/
 [swirl]: http://swirlstats.com/
 [tidyverse]: http://tidyverse.org/
+[Working with Data in the Tidyverse]: https://www.datacamp.com/courses/working-with-data-in-the-tidyverse
+[R for Data Science]: http://r4ds.had.co.nz/
+[Epidemiology & Data Science]: https://kelseyandersen.github.io/PLP6905/
 [CRAN task views]: https://cran.r-project.org/web/views/
-[UNL Statistics Help Desk]: http://statistics.unl.edu/help-desk-form
+[UW-Madison CALS Stat Consulting]: https://www.stat.wisc.edu/consulting-lab
 [Sampling, Data Management and Visualization]: https://atyre2.github.io/data-management/ 
 [R style guide]: http://style.tidyverse.org/
 [RStudio Cheat Sheets]: https://www.rstudio.com/resources/cheatsheets/
 [R for Beginners]: https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+[Top 50 ggplot2 visualizations]: http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+[R Graph Gallery]: https://www.r-graph-gallery.com/
+[ComBEE @ UW-Madison]: https://combee-uw-madison.github.io/studyGroup/
+[Lynda.com]: https://it.wisc.edu/services/online-training-lynda-com/
+[FlowingData]: https://flowingdata.com/category/tutorials/
+[VisualisingData]: http://www.visualisingdata.com/resources/
+[Googling for Help]: http://datacarpentry.org/semester-biology/materials/googling-for-help/ 
+[R Stats 4 Ag]: http://rstats4ag.org/
+[agricolae]: https://cran.r-project.org/web/packages/agricolae/vignettes/tutorial.pdf 
