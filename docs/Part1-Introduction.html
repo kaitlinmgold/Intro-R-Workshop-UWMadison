@@ -466,22 +466,22 @@ character data as an object and will produce an error.</p>
 <p>What is the length of your name? We can find out using the function length()</p>
 <pre class="r"><code>&gt; length(name)</code></pre>
 <pre><code>[1] 2</code></pre>
-<p>Let’s compare this to a vector that contains only numeric data. For this example, let’s create three objects to represent today’s date in numbers for the month (10), day (24), and year (2018).</p>
+<p>Let’s compare this to a vector that contains only numeric data. For this example, let’s create three objects to represent today’s date in numbers for the month (10), day (25), and year (2018).</p>
 <pre class="r"><code>&gt; month &lt;- 10
-&gt; day &lt;- 24
+&gt; day &lt;- 25
 &gt; year &lt;- 2018</code></pre>
 <p>combine those three objects using the <em>combine</em> function:</p>
 <pre class="r"><code>&gt; today &lt;- c(month, day, year)</code></pre>
 <p>Inspect this object by typing the name <code>today</code> at the command line. You’ll see that R has eliminated the zero that preceeds the 6 and has kept the order we provided for these elements in the vector. Let’s take a look at the structure of today.</p>
 <pre class="r"><code>&gt; str(today)</code></pre>
-<pre><code> num [1:3] 10 24 2018</code></pre>
+<pre><code> num [1:3] 10 25 2018</code></pre>
 <p>You’ll notice that the vector has three elements [1:3] and it contains only numeric data.</p>
 <p>Let’s do the same thing using the name October for month and see how that changes our vector. Notice that we are not modifying the object <em>month</em>, we are simply combining our two existing objects with the word “October”.</p>
 <pre class="r"><code>&gt; c(&quot;October&quot;, day, year)   </code></pre>
-<pre><code>[1] &quot;October&quot; &quot;24&quot;      &quot;2018&quot;   </code></pre>
+<pre><code>[1] &quot;October&quot; &quot;25&quot;      &quot;2018&quot;   </code></pre>
 <p>In this case we didn’t re-assign the object named <code>today</code>. To inspect the structure of this vector, we can wrap the statement within the str() function, as shown below. We also want to inspect the data class (ie. whether numeric or character) using the function class(). Don’t forget to use the up-arrow to access the last like that you ran!</p>
 <pre class="r"><code>&gt; str(c(&quot;&quot;, day, year)) # this shows us the structure of the object</code></pre>
-<pre><code> chr [1:3] &quot;&quot; &quot;24&quot; &quot;2018&quot;</code></pre>
+<pre><code> chr [1:3] &quot;&quot; &quot;25&quot; &quot;2018&quot;</code></pre>
 <pre class="r"><code>&gt; class(c(&quot;October&quot;, day, year))</code></pre>
 <pre><code>[1] &quot;character&quot;</code></pre>
 <p>Notice how R is trying to keep our data organized according to type. Rather than coding this vector as containing numbers and characters, it has decided that because it can’t call everything in our vector a number that it will call everything characters. This process is called <em>coercion</em>.</p>
@@ -508,11 +508,11 @@ character data as an object and will produce an error.</p>
 <pre class="r"><code>&gt; length(month)</code></pre>
 <pre><code>[1] 31</code></pre>
 <p>There are 30 elements in this vector and we can inspect individual elements in the vector based on their ordered position using square brackets:</p>
-<pre class="r"><code>&gt; day[24]  </code></pre>
-<pre><code>[1] 24</code></pre>
-<pre class="r"><code>&gt; month[24] # the number inside the brackets corresponds to location of element in list, not value</code></pre>
+<pre class="r"><code>&gt; day[25]  </code></pre>
+<pre><code>[1] 25</code></pre>
+<pre class="r"><code>&gt; month[25] # the number inside the brackets corresponds to location of element in list, not value</code></pre>
 <pre><code>[1] 10</code></pre>
-<p>In this case, the 24th element in <code>day</code> is 24, and the 24th element in <code>month</code> is 10 which confirms that we created this correctly.</p>
+<p>In this case, the 25th element in <code>day</code> is 25, and the 25th element in <code>month</code> is 10 which confirms that we created this correctly.</p>
 <blockquote>
 <p>Type <code>day[32]</code> into your R console. What do you get? What does it mean? Ask yourself the question, “Are there any months with 32 days?”</p>
 </blockquote>
@@ -615,23 +615,23 @@ character data as an object and will produce an error.</p>
 5   5    10 2018
 6   6    10 2018</code></pre>
 <p>Now that we have our table, the question becomes, how do we inspect different elements?</p>
-<p>Just like we can inspect the 24th element in the <code>day</code> vector using <code>day[24]</code>, we can also use the brackets to subset a table, the only catch is that we have to use the coordinates of the row(s) and the column(s) we want. We can do this by specifying <code>[row, column]</code>. These are analagous to X and Y Cartesian coordinates. Let’s take a look at the elements in the 24th row, separately:</p>
-<pre class="r"><code>&gt; October[24, 1] # day</code></pre>
-<pre><code>[1] 24</code></pre>
-<pre class="r"><code>&gt; October[24, &quot;month&quot;] # you can use characters when the elements are named!</code></pre>
+<p>Just like we can inspect the 25th element in the <code>day</code> vector using <code>day[25]</code>, we can also use the brackets to subset a table, the only catch is that we have to use the coordinates of the row(s) and the column(s) we want. We can do this by specifying <code>[row, column]</code>. These are analagous to X and Y Cartesian coordinates. Let’s take a look at the elements in the 25th row, separately:</p>
+<pre class="r"><code>&gt; October[25, 1] # day</code></pre>
+<pre><code>[1] 25</code></pre>
+<pre class="r"><code>&gt; October[25, &quot;month&quot;] # you can use characters when the elements are named!</code></pre>
 <pre><code>[1] 10</code></pre>
-<pre class="r"><code>&gt; October[24, 3] # year</code></pre>
+<pre class="r"><code>&gt; October[25, 3] # year</code></pre>
 <pre><code>[1] 2018</code></pre>
-<pre class="r"><code>&gt; October[24, -3] # here `-` means all columns except the third (year)</code></pre>
+<pre class="r"><code>&gt; October[25, -3] # here `-` means all columns except the third (year)</code></pre>
 <pre><code>   day month
-24  24    10</code></pre>
-<pre class="r"><code>&gt; October[24, -2] # day and year</code></pre>
+25  25    10</code></pre>
+<pre class="r"><code>&gt; October[25, -2] # day and year</code></pre>
 <pre><code>   day year
-24  24 2018</code></pre>
+25  25 2018</code></pre>
 <p>If we don’t specify a dimension, R will give us the entire contents of that dimension. Let’s look at the row that contains today’s date:</p>
-<pre class="r"><code>&gt; October[24, ]</code></pre>
+<pre class="r"><code>&gt; October[25, ]</code></pre>
 <pre><code>   day month year
-24  24    10 2018</code></pre>
+25  25    10 2018</code></pre>
 <p>You can also use this to access just one column of the matrix. Let’s look at month:</p>
 <pre class="r"><code>&gt; October[, 2]</code></pre>
 <pre><code> [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10

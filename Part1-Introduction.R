@@ -227,10 +227,10 @@ length(name)
 
 # Let's compare this to a vector that contains only numeric data. For this 
 # example, let's create three objects to represent today's date in numbers for
-# the month (10), day (24), and year (2018).
+# the month (10), day (25), and year (2018).
 
 month <- 10
-day <- 24
+day <- 25
 year <- 2018
 
 # combine those three objects using the *combine* function:
@@ -307,10 +307,10 @@ length(month)
 # There are 30 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
-day[24]  
-month[24] # the number inside the brackets corresponds to location of element in list, not value
+day[25]  
+month[25] # the number inside the brackets corresponds to location of element in list, not value
 
-# In this case, the 24th element in `day` is 24, and the 24th element in `month` is 10
+# In this case, the 25th element in `day` is 25, and the 25th element in `month` is 10
 # which confirms that we created this correctly.
 # 
 # > Type `day[32]` into your R console. What do you get? What does it mean? Ask
@@ -396,22 +396,22 @@ head(October)  # if this didn't work, double-check that you spelled the object n
 
 # Now that we have our table, the question becomes, how do we inspect different elements?
 # 
-# Just like we can inspect the 24th element in the `day` vector using `day[24]`,
+# Just like we can inspect the 25th element in the `day` vector using `day[25]`,
 # we can also use the brackets to subset a table, the only catch is that we have
 # to use the coordinates of the row(s) and the column(s) we want. We can do this
 # by specifying `[row, column]`. These are analagous to X and Y Cartesian 
-# coordinates. Let's take a look at the elements in the 24th row, separately:
+# coordinates. Let's take a look at the elements in the 25th row, separately:
 
-October[24, 1] # day
-October[24, "month"] # you can use characters when the elements are named!
-October[24, 3] # year
-October[24, -3] # here `-` means all columns except the third (year)
-October[24, -2] # day and year
+October[25, 1] # day
+October[25, "month"] # you can use characters when the elements are named!
+October[25, 3] # year
+October[25, -3] # here `-` means all columns except the third (year)
+October[25, -2] # day and year
 
 # If we don't specify a dimension, R will give us the entire contents of that
 # dimension. Let's look at the row that contains today's date:
 
-October[24, ]
+October[25, ]
 
 # You can also use this to access just one column of the matrix.  Let's look at month:
 
