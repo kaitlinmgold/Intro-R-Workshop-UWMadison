@@ -527,8 +527,8 @@ stop("
 #  2. Values for TRUE elements                             : "November"
 #  3. Values for FALSE elements                            : "October"
 
-ifelse(fall$month == 6, yes = "November", no = "October")
-fall$month <- ifelse(fall$month == 6, yes = "November", no = "October")
+ifelse(fall$month == 10, yes = "November", no = "October")
+fall$month <- ifelse(fall$month == 10, yes = "November", no = "October")
 
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.

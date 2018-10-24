@@ -833,17 +833,19 @@ either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</cod
      
      </code></pre>
 <p>In order to use <code>ifelse</code>, we will need to provide three things: 1. A logical question about the elements of an object : fall$month == 6 2. Values for TRUE elements : “November” 3. Values for FALSE elements : “October”</p>
-<pre class="r"><code>&gt; ifelse(fall$month == 6, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
-<pre><code> [1] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
- [8] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[15] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[22] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[29] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[36] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[43] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[50] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;
-[57] &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot; &quot;October&quot;</code></pre>
-<pre class="r"><code>&gt; fall$month &lt;- ifelse(fall$month == 6, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
+<pre class="r"><code>&gt; ifelse(fall$month == 10, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
+<pre><code> [1] &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot; 
+ [7] &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot; 
+[13] &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot; 
+[19] &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot; 
+[25] &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot;  &quot;October&quot; 
+[31] &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot;
+[37] &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot;
+[43] &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot;
+[49] &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot;
+[55] &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot; &quot;November&quot;
+[61] &quot;November&quot;</code></pre>
+<pre class="r"><code>&gt; fall$month &lt;- ifelse(fall$month == 10, yes = &quot;November&quot;, no = &quot;October&quot;)</code></pre>
 <blockquote>
 <p>Notice that we had to use <code>==</code> to indicate equality. This is so that R doesn’t get confused and assume we are using the argument assignment, <code>=</code>. Now, let’s inspect fall.</p>
 </blockquote>
