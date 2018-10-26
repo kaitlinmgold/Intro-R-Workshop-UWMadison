@@ -31,7 +31,7 @@
 # 
 install.packages("ggplot2")
 # 
-library("ggplot2")
+library(ggplot2)
 # 
 fungicide <- read.csv("data/fungicide_dat.csv")
 # 
@@ -117,7 +117,7 @@ yield.plot
 # 
 # > Note: From here on out, I will be wrapping all commands with parentheses.
 # > This allows the result of the assignment to be displayed automatically.
-# 
+#
 (yield.plot <- yield.plot + geom_boxplot())
 # 
 # If we want to change the color of the boxplots from white (default) to orange,  
@@ -128,7 +128,7 @@ yield.plot
 # Instead of all the boxplots having the same color, it will be interesting if we 
 # could color them according to the Treatment.
 # 
-(yield.plot <- yield.plot + geom_boxplot(fill = Treatment))
+yield.plot + geom_boxplot(fill = Treatment)
 # 
 # Oops! There was an error. It cannot recognize that we are talking about the 
 # Treatment column from our data set. This is because we have to use the function 
@@ -172,15 +172,14 @@ yield.plot
 (yield.plot + annotate("text", x="Control", y= 174.5, label="A", size=5) +
              annotate("text", x="Fungicide_A", y= 174.5, label="A", size=5)+
              annotate("text", x="Fungicide_B", y= 176.25, label="B", size=5) )
-# 
+
 # With stars
-(yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176.25, label="*", size=10))
+(yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176, label="*", size=10))
 # If we want to include a caption explaining what our annotations mean we can use 'labs()'.
 # We can also use this function to add subtitles, titles, or x and y labels. 
-(yield.plot <- yield.plot + annotate("text", x="Fungicide_B", y= 176.25, label="*", size=10) +
-                            labs(caption="* indicates significant difference by Tukey's HSD pvalue <0.01"))
+(yield.plot <- yield.plot + labs(caption="* indicates significant difference by Tukey's HSD pvalue <0.01"))
+
 # ### Adjusting Look and Feel (theme)
-# 
 # The first thing we can do is change the default theme from `theme_grey()` to
 # `theme_bw()`. We will simultaneously set the base size of the font to be 14pt.
 # 
@@ -268,5 +267,5 @@ severity.plot
 # function, which allows us to save it as a pdf, png, svg, eps, etc. file.
 # Or, we can click on 'Export' and save it. 
 # 
-ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
+ggsave(filename = "results/figure2.png", width = 10, units = "cm")
 

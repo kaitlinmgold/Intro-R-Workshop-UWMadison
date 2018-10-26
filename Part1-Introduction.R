@@ -79,7 +79,7 @@ pi^2   # this does the same thing because ^ is, here, interpreted as "taken to t
 
 a <- 5  # assign the number 5 to a
 b <- 1  # assign number 1 to b
-c = 3   # we can also use `=` to assign 3 to c
+c = 3 # we can also use `=` to assign 3 to c
 
 # As you are assigning these numbers to objects, they appear in your environment
 # (top right).  These objects are not being saved to a hard drive, they are
@@ -210,6 +210,7 @@ c(first.name, last.name)
 # recent commands using the cmd + up arrow OR the ctrl + up arrow.
 
 name <- c(first.name, last.name)
+name
 
 # We can inspect this object by typing *name* at the command line. We can
 # inspect the structure of this object using the function str() on name.
@@ -234,6 +235,7 @@ day <- 25
 year <- 2018
 
 # combine those three objects using the *combine* function:
+
 today <- c(month, day, year)
 
 # Inspect this object by typing the name `today` at the command line. You'll see
@@ -286,7 +288,8 @@ class(c("October", day, year))
 # You see at in the console that this created a sequence of 31 numbers from 1 to
 # 31. Let's go ahead and assign this to the object `day`.
 
-day <- 1:31
+day <- (1:31)
+
 
 # For the objects month and year, we don't need to modify them, however, we want
 # to repeat each of them a total of 31 times because we need to repeat each, 
@@ -298,7 +301,6 @@ day <- 1:31
 
 month <- 10
 month <- rep(month, times = 31)
-month
 
 # Let's check to make sure that month is correct using the function `length()`:
 
@@ -368,7 +370,7 @@ length(October)
 
 dim(October)
 
-# This tells us that we have 30 rows and 3 columns. R also provides the `nrow()`
+# This tells us that we have 31 rows and 3 columns. R also provides the `nrow()`
 # and `ncol()` functions to make it easier to remember which is which:
 
 nrow(October)
@@ -416,6 +418,7 @@ October[25, ]
 # You can also use this to access just one column of the matrix.  Let's look at month:
 
 October[, 2]
+October[,"year"]
 
 # Notice, however that this result now appears to be a a vector! This is because
 # of a sneaky default option called `drop = TRUE`. R tries to "help" by removing
@@ -423,7 +426,7 @@ October[, 2]
 # to keep this as a data frame, you can turn off this option *inside the 
 # brackets*:
 
-October[, 2, drop = FALSE]
+October[, 2, drop = F]
 
 # Now that we've inspected the object `October`, let's create the same thing for
 # the month of November How should we do this?
@@ -443,19 +446,20 @@ November <- October[-31,]
 str(November)  # we have an extra column
 tail(November) # we don't have 31 days
 
-# We need to change the month column so that it says 6 instead of 7, how can we
+# We need to change the month column so that it says 11 instead of 10, how can we
 # do this?  Let's just look at the column first:
 
 November$month
 
 # We need to add 1 to each of these values, so let's try that!
 
-November$month - 1
+November$month + 1
+
 
 # This worked, so now we just need to replace values in November[,2] with the new
 # expression:
 
-November$month <- November$month - 1    # Did it work?
+November$month <- November$month + 1    # Did it work?
 str(November)
 
 # Let's combine both of these tables into one.  R provides two functions that can help 
@@ -463,21 +467,21 @@ str(November)
 # (or another data frame) by rows and columns, respectively. Which one should we use? 
 # If you’re unsure, try both!
 
-cbind(November, October) 
+cbind(October, November) 
 
 # We have an error! R is trying to stack them side by side and is failing to do so because 
 # of different number of rows.
 
-rbind(November, October) # This works!
-fall <- rbind(November, October)
+rbind(October, November) # This works!
+Autumn <- rbind(October, November)
 
 # Inspect this object to ensure it was made correctly. 
 
-str(fall)
-head(fall)
-tail(fall)
+str(Autumn)
+head(Autumn)
+tail(Autumn)
 
-# We now have a new object fall that contains only numeric data. Let's revise
+# We now have a new object Autumn that contains only numeric data. Let's revise
 # this object so that it uses names for the month instead of numbers.  We want
 # it to look like this:
 # ```
@@ -488,21 +492,23 @@ tail(fall)
 #   ...
 # ```
 
-# Months need to be changed from the number 6 to "October" and from 7 to "October" in
+# Months need to be changed from the number 10 to "October" and from 11 to "November" in
 # the second column.  Let's first look at the month column.
 
-fall$month
+Autumn$month
 
-# We want to specify only the cells in this list that are 6. We know that rows 1
-# to 30 contain 6's and the rest contain 7's, which means we can inspect
-# those rows in the object fall:
+# We want to specify only the cells in this list that are 10. We know that rows 1
+# to 31 contain 10's and the rest contain 11's, which means we can inspect
+# those rows in the object Autumn:
 
-fall[1:30, "month"]     # November
-fall[-c(1:31), "month"] # October
+Autumn[1:31, "month"]     # October
+Autumn[-c(32:61), "month"] # also October
+Autumn[-c(1:31), "month"] # November
+Autumn[32:61, "month"] # also November
 
 
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
-# > this give us the values for the month of October?
+# > this give us the values for the month of November?
  
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
@@ -523,29 +529,29 @@ stop("
 
 # In order to use `ifelse`, we will need to provide three things:
  
-#  1. A logical question about the elements of an object   : fall$month == 6
+#  1. A logical question about the elements of an object   : Autumn$month == 6
 #  2. Values for TRUE elements                             : "November"
 #  3. Values for FALSE elements                            : "October"
 
-ifelse(fall$month == 10, yes = "November", no = "October")
-fall$month <- ifelse(fall$month == 10, yes = "November", no = "October")
+ifelse(Autumn$month == 10, yes = "October", no = "November")
+Autumn$month <- ifelse(Autumn$month == 10, yes = "October", no = "November")
 
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.
 
-# Now, let's inspect fall. 
+# Now, let's inspect Autumn. 
 
-str(fall)
-head(fall)
+str(Autumn)
+head(Autumn)
 
 # Let's change first letter of every column name to uppercase i.e., replace  
 # "day" with "Day" and so on.  We can do this using `colnames()` function.
 
-colnames(fall) # Current column names
+colnames(Autumn) # Current column names
 
-colnames(fall) <- c("Day", "Month", "Year") # New column names
+colnames(Autumn) <- c("Day", "Month", "Year") # New column names
 
-# Let's inspect fall again. 
-str(fall)
-head(fall)
+# Let's inspect Autumn again. 
+str(Autumn)
+head(Autumn)
 

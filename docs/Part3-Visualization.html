@@ -356,7 +356,7 @@ div.tocify {
 <h3>Getting started</h3>
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
-<pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
+<pre class="r"><code>&gt; library(ggplot2)</code></pre>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
 <pre class="r"><code>&gt; stop(&quot;
 +      What visualization might be appropriate for these data?
@@ -409,14 +409,15 @@ div.tocify {
 <blockquote>
 <p>Note: From here on out, I will be wrapping all commands with parentheses. This allows the result of the assignment to be displayed automatically.</p>
 </blockquote>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot())</code></pre>
+<pre class="r"><code>&gt; #
+&gt; (yield.plot &lt;- yield.plot + geom_boxplot())</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>If we want to change the color of the boxplots from white (default) to orange,<br />
 we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(fill = &quot;orange&quot;))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Instead of all the boxplots having the same color, it will be interesting if we could color them according to the Treatment.</p>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(fill = Treatment))</code></pre>
+<pre class="r"><code>&gt; yield.plot + geom_boxplot(fill = Treatment)</code></pre>
 <pre><code>Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomBoxplot, : object &#39;Treatment&#39; not found</code></pre>
 <p>Oops! There was an error. It cannot recognize that we are talking about the Treatment column from our data set. This is because we have to use the function <code>aes()</code> whenever we are referring to our data set.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(aes(fill = Treatment))) # This works!</code></pre>
@@ -447,11 +448,10 @@ With Letters</p>
 +              annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;B&quot;, size=5) )</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>With stars</p>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10))</code></pre>
+<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176, label=&quot;*&quot;, size=10))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>If we want to include a caption explaining what our annotations mean we can use ‘labs()’. We can also use this function to add subtitles, titles, or x and y labels.</p>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + annotate(&quot;text&quot;, x=&quot;Fungicide_B&quot;, y= 176.25, label=&quot;*&quot;, size=10) +
-+                             labs(caption=&quot;* indicates significant difference by Tukey&#39;s HSD pvalue &lt;0.01&quot;))</code></pre>
+<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + labs(caption=&quot;* indicates significant difference by Tukey&#39;s HSD pvalue &lt;0.01&quot;))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="adjusting-look-and-feel-theme" class="section level3">
@@ -523,9 +523,8 @@ With Letters</p>
 <div id="step-2-saving-our-plot" class="section level2">
 <h2>Step 2: Saving our plot</h2>
 <p>Now that we have our plot finished, we can save it with the <code>ggsave()</code> function, which allows us to save it as a pdf, png, svg, eps, etc. file. Or, we can click on ‘Export’ and save it.</p>
-<pre class="r"><code>&gt; ggsave(filename = &quot;results/figure1.pdf&quot;, width = 88, units = &quot;mm&quot;)</code></pre>
-<pre><code>Saving 88 x 178 mm image</code></pre>
-<pre><code>Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;results/figure1.pdf&#39;</code></pre>
+<pre class="r"><code>&gt; ggsave(filename = &quot;results/figure2.png&quot;, width = 10, units = &quot;cm&quot;)</code></pre>
+<pre><code>Saving 10 x 17.8 cm image</code></pre>
 </div>
 </div>
 

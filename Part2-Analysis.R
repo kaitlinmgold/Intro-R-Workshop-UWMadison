@@ -129,7 +129,7 @@ library("dplyr")
 # 62.77. So, how can we add a column with yield data in kg/ha? We can do this 
 # similar to what we learnt in Part 1.
 # 
-# `fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77`
+fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77
 # 
 # We can also use the function `mutate()` from 'dplyr'. This adds a new variable 
 # using existing variables. The usage of this function is as: 
@@ -217,7 +217,7 @@ str(yield_summary)
 # and Fungicide A. If we want to filter a data frame based upon specific values of a 
 # variable, we can use the function `filter()`.
 # 
-filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
+filter(fungicide, Treatment == "Control" & Treatment == "Fungicide_A")
 # 
 # The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
 # We can also write the same expression as:
