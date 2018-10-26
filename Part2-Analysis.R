@@ -15,9 +15,7 @@
 # 
 # A working directory is the folder on your computer where you are currently
 # working. You can find out your current working directory by typing `getwd()`
-
-getwd()
-
+#
 # If you've downloaded and un-zipped this directory to your desktop, you might 
 # see something like `/Users/<yourname>/Desktop/IntroR_Workshop`. This is the  
 # default place where R will begin reading and writing files. For example, you  
