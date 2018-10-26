@@ -217,7 +217,7 @@ str(yield_summary)
 # and Fungicide A. If we want to filter a data frame based upon specific values of a 
 # variable, we can use the function `filter()`.
 # 
-filter(fungicide, Treatment == "Control" & Treatment == "Fungicide_A")
+filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
 # 
 # The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
 # We can also write the same expression as:
@@ -226,6 +226,14 @@ filter(fungicide, Treatment != "Fungicide_B")
 # 
 # The treatment column should not be equal to (`!=`) to Fungicide_B. So, it will have 
 # everything except Fungicide B ("Control" and "Fungicide_A").
+# 
+# Be careful about about your syntax when subsetting data. What happens if we use `&` 
+# instead of `|`?
+# 
+filter(fungicide, Treatment == "Control" & Treatment == "Fungicide_A")
+# 
+# Yikes- no data! R thinks about data differently than we do- when we used `&` it looked
+# for data that was both "Control" and "Fungicide_A," of which there were none.
 # 
 # After filtering, we need to add a column `Percent_Severity`, where severity is measured
 # in percent and not on a scale of 1 to 10. Any guess on which function should we use?

@@ -636,9 +636,20 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>What is the percent severity of Control and Fungicide A?</li>
 </ol>
 <p>First, we need to create a new data frame where we only have severity data for Control and Fungicide A. If we want to filter a data frame based upon specific values of a variable, we can use the function <code>filter()</code>.</p>
-<pre class="r"><code>&gt; filter(fungicide, Treatment == &quot;Control&quot; &amp; Treatment == &quot;Fungicide_A&quot;)</code></pre>
-<pre><code>[1] Treatment         Yield_bu_per_acre Severity          Yield_kg_per_ha  
-&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<pre class="r"><code>&gt; filter(fungicide, Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_A&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity Yield_kg_per_ha
+1      Control            173.82      5.5        10910.68
+2      Control            174.23      5.6        10936.42
+3      Control            173.57      5.4        10894.99
+4      Control            173.61      5.4        10897.50
+5      Control            174.19      5.6        10933.91
+6      Control            173.80      5.5        10909.43
+7  Fungicide_A            173.98      5.1        10920.72
+8  Fungicide_A            174.27      5.2        10938.93
+9  Fungicide_A            173.61      5.0        10897.50
+10 Fungicide_A            173.88      5.0        10914.45
+11 Fungicide_A            174.17      5.2        10932.65
+12 Fungicide_A            173.49      5.1        10889.97</code></pre>
 <p>The treatment column should either be equal (<code>==</code>) to Control OR (<code>|</code>) Fungicide_A. We can also write the same expression as:</p>
 <pre class="r"><code>&gt; filter(fungicide, Treatment != &quot;Fungicide_B&quot;)</code></pre>
 <pre><code>     Treatment Yield_bu_per_acre Severity Yield_kg_per_ha
@@ -655,6 +666,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 11 Fungicide_A            174.17      5.2        10932.65
 12 Fungicide_A            173.49      5.1        10889.97</code></pre>
 <p>The treatment column should not be equal to (<code>!=</code>) to Fungicide_B. So, it will have everything except Fungicide B (“Control” and “Fungicide_A”).</p>
+<p>Be careful about about your syntax when subsetting data. What happens if we use <code>&amp;</code> instead of <code>|</code>?</p>
+<pre class="r"><code>&gt; filter(fungicide, Treatment == &quot;Control&quot; &amp; Treatment == &quot;Fungicide_A&quot;)</code></pre>
+<pre><code>[1] Treatment         Yield_bu_per_acre Severity          Yield_kg_per_ha  
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>Yikes- no data! R thinks about data differently than we do- when we used <code>&amp;</code> it looked for data that was both “Control” and “Fungicide_A,” of which there were none.</p>
 <p>After filtering, we need to add a column <code>Percent_Severity</code>, where severity is measured in percent and not on a scale of 1 to 10. Any guess on which function should we use? Let’s perform all operations in one go.</p>
 <pre class="r"><code>&gt; severity_dat &lt;- fungicide %&gt;% 
 +   filter(Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_A&quot;) %&gt;% 
